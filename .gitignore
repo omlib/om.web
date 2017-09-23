@@ -1,0 +1,7 @@
+_*
+examples/*/bin/
+examples/*/*.js*
+doc/
+test/bin/
+haxedoc.xml
+TODO*

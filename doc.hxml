@@ -1,0 +1,25 @@
+--no-output
+-lib om.web
+-dce no
+-D doc-gen
+om.web.Manifest
+--each
+
+--next
+-js x
+-xml doc/js.xml
+
+--next
+-js x
+-xml doc/nodejs.xml
+-lib hxnodejs
+
+--next
+-neko x
+-xml doc/neko.xml
+#om.Web
+
+--next
+-php x
+-xml doc/php.xml
+#om.Web
