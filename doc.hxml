@@ -1,9 +1,14 @@
 --no-output
 -lib om.web
+om.Web
+om.web.Manifest
 -dce no
 -D doc-gen
-om.web.Manifest
 --each
+
+--next
+-hl x
+-xml doc/hl.xml
 
 --next
 -js x
@@ -11,15 +16,13 @@ om.web.Manifest
 
 --next
 -js x
--xml doc/nodejs.xml
+-xml doc/node.xml
 -lib hxnodejs
 
 --next
 -neko x
 -xml doc/neko.xml
-#om.Web
 
 --next
 -php x
 -xml doc/php.xml
-#om.Web

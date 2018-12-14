@@ -3,12 +3,13 @@
     "version": "0.0.0",
     "description": "Web tools",
     "tags": ["om","web"],
-    "url": "https://github.com/tong/om.web",
+    "url": "https://github.com/omlib/om.web",
     "license": "OM",
     "contributors": ["tong"],
     "releasenote": "See CHANGELOG",
     "classPath" : "src/",
     "dependencies": {
-        "om.core":""
+        "om.core": "",
+        "om.http": ""
     }
 }

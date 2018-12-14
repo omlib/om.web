@@ -66,7 +66,7 @@ class Dispatch {
 
 	public macro function dispatch( ethis : Expr, obj : ExprOf<{}> ) : ExprOf<Void> {
 		var p = Context.currentPos();
-		var cfg = makeConfig(obj);
+		var cfg = makeConfig( obj );
 		return { expr : ECall({ expr : EField(ethis, "runtimeDispatch"), pos : p }, [cfg]), pos : p };
 	}
 
@@ -84,8 +84,7 @@ class Dispatch {
 		return { expr : EBlock([ { expr : EVars([ { name : "tmp", type : rt, expr : call } ]), pos : p }, { expr : EConst(CIdent("tmp")), pos : p } ]), pos : p };
 	}
 
-	public dynamic function onMeta( v : String, args : Null<Array<Dynamic>> ) {
-	}
+	public dynamic function onMeta( v : String, args : Null<Array<Dynamic>> ) {}
 
 	function resolveName( name : String ) {
 		return name;
@@ -126,10 +125,12 @@ class Dispatch {
 		throw new Redirect();
 	}
 
-	static var GET_RULES;
+	static var GET_RULES : Dynamic;
+
 	public function runtimeGetParams( cfgIndex : Int ) : Dynamic {
 		if( GET_RULES == null )
 			GET_RULES = haxe.Unserializer.run(haxe.rtti.Meta.getType(Dispatch).getParams[0]);
+		//var GET_RULES = haxe.Unserializer.run(haxe.rtti.Meta.getType(Dispatch).getParams[0]);
 		return checkParams(GET_RULES[cfgIndex], true);
 	}
 
@@ -242,8 +243,7 @@ class Dispatch {
 
 	static function getType(t,p) {
 		switch( Context.follow(t) ) {
-		case TInst(i,_):
-			switch( i.toString() ) {
+		case TInst(i,_): switch( i.toString() ) {
 			case "Int":
 				return MRInt;
 			case "Float":
@@ -407,7 +407,7 @@ class Dispatch {
 		return null;
 	}
 
-	static var PARAMS:Array<Dynamic> = null;
+	static var PARAMS : Array<Dynamic> = null;
 
 	static function buildParams(_) {
 		var rules = [];
@@ -434,8 +434,7 @@ class Dispatch {
 		return PARAMS[i].t;
 	}
 
-	public dynamic static function checkMeta( f : ClassField ) {
-	}
+	public dynamic static function checkMeta( f : ClassField ) {}
 
 	#end
 
@@ -446,7 +445,7 @@ class Dispatch {
 	public static macro function run( url : ExprOf<String>, params : ExprOf<Map<String,String>>, obj : ExprOf<{}> ) : ExprOf<Void> {
 		var p = Context.currentPos();
 		var cfg = makeConfig(obj);
-		return { expr : ECall({ expr : EField({ expr : ENew({ name : "Dispatch", pack : PACK, params : [], sub : null },[url,params]), pos : p },"runtimeDispatch"), pos : p },[cfg]), pos : p };
+		return { expr : ECall( { expr : EField( { expr : ENew( { name : "Dispatch", pack : PACK, params : [], sub : null }, [url,params]), pos : p }, "runtimeDispatch"), pos : p }, [cfg]), pos : p };
 	}
 
 	static function extractConfig( obj : Dynamic ) : DispatchConfig {
