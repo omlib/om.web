@@ -1,19 +1,19 @@
 package om.web;
 
-@:enum abstract DisplayMode(String) to String {
+enum abstract DisplayMode(String) to String {
 	var fullscreen = "fullscreen";
 	var standalone = "standalone";
 	var minimal_ui = "minimal-ui";
 	var browser = "browser";
 }
 
-@:enum abstract Dir(String) to String {
-	var ltr = "ltr";
-	var rtl = "rtl";
-	var auto = "auto";
+enum abstract Dir(String) to String {
+	var ltr;
+	var rtl;
+	var auto;
 }
 
-@:enum abstract Orientation(String) to String {
+enum abstract Orientation(String) to String {
 	var any = "any";
 	var natural = "natural";
 	var landscape = "landscape";
@@ -24,10 +24,18 @@ package om.web;
 	var portrait_secondary = "portrait-secondary";
 }
 
+
+enum abstract Purpose(String) to String {
+	var badge;
+	var maskable;
+	var any;
+}
+
 typedef Icon = {
 	var src : String;
 	var sizes : String;
 	@:optional var type : String;
+	@:optional var purpose : Purpose;
 }
 
 typedef RelatedApplication = {
@@ -52,6 +60,7 @@ typedef RelatedApplication = {
     Manifests should be served using the `application/manifest+json` MIME type.
     However, it is optional to do so.
 
+	@see https://developer.mozilla.org/en-US/docs/Web/Manifest
 */
 typedef Manifest = {
     @:optional var background_color : String;
